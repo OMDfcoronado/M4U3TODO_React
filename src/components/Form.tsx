@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-export const Form = ({ setTareas, tareas }) => {
+export const Form = ({ setTareas, setTarea, tareas, tarea }) => {
 
     const [titulo, setTitulo] = useState('');
     const [fecha, setFecha] = useState('');
@@ -9,6 +9,14 @@ export const Form = ({ setTareas, tareas }) => {
     const generateId = () => {
         return Math.random().toString(20).substr(2);
     }
+
+    useEffect(() => {
+        if (Object.keys(tarea).length > 0) {
+            setTitulo(tarea.titulo)
+            setFecha(tarea.fecha)
+            setDescrip(tarea.descrip)
+        }
+    }, [tarea]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,16 +32,24 @@ export const Form = ({ setTareas, tareas }) => {
             titulo,
             fecha,
             descrip,
-            id: generateId()
+            id: ''
+        }
+
+        if (tarea.id) {
+            const tareasActualizadas = tareas.map((tareaState) => tareaState.id === tarea.id ? task : tareaState);
+            setTareas(tareasActualizadas)
+            setTarea({})
+        } else {
+            task.id = generateId();
+            setTareas([...tareas, task]);
         }
 
         //tareas.push(task)
-
-        setTareas([...tareas, task]);
         //setTareas(tareas);
-        //setTitulo('');
-        //setFecha('');
-        //setDescrip('');
+
+        setTitulo('');
+        setFecha('');
+        setDescrip('');
     }
 
 
@@ -84,11 +100,20 @@ export const Form = ({ setTareas, tareas }) => {
                     />
 
                 </div>
-                <input
-                    type="submit"
-                    className="bg-blue-600 w-full p-3 text-white uppercase font-bold hover:bg-blue-700 transition-colors cursor-pointer"
-                    value="Crear tare"
-                />
+
+                {tarea.id ? (
+                    <input
+                        type="submit"
+                        className="bg-orange-600 w-full p-3 text-white uppercase font-bold hover:bg-blue-700 transition-colors cursor-pointer"
+                        value="Actualizar tarea"
+                    />) :
+                    (<input
+                        type="submit"
+                        className="bg-blue-600 w-full p-3 text-white uppercase font-bold hover:bg-blue-700 transition-colors cursor-pointer"
+                        value="Crear tarea"
+                    />)}
+
+
             </form>
         </div>
     )
