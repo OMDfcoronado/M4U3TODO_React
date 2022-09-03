@@ -1,10 +1,10 @@
 export const Task = ({ tarea, setTarea, eliminarTarea }) => {
+
     const { titulo, fecha, descrip, id } = tarea;
     const handleEliminar = () => {
         const pregunta = confirm('Desea eliminar esta tarea?👀')
         if (pregunta) { eliminarTarea(id) }
     }
-
 
     return (
         <div className="bg-white shadow-md px-5 py-10 rounded-lg mt-5">
