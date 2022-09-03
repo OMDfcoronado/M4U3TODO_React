@@ -1,11 +1,14 @@
 import { useState } from "react"
 
-export const Form = () => {
+export const Form = ({ setTareas, tareas }) => {
 
     const [titulo, setTitulo] = useState('');
     const [fecha, setFecha] = useState('');
     const [descrip, setDescrip] = useState('');
     const [error, setError] = useState(false);
+    const generateId = () => {
+        return Math.random().toString(20).substr(2);
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,6 +20,20 @@ export const Form = () => {
 
         setError(false);
 
+        const task = {
+            titulo,
+            fecha,
+            descrip,
+            id: generateId()
+        }
+
+        //tareas.push(task)
+
+        setTareas([...tareas, task]);
+        //setTareas(tareas);
+        //setTitulo('');
+        //setFecha('');
+        //setDescrip('');
     }
 
 

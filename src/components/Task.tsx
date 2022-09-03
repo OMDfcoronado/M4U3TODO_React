@@ -1,16 +1,16 @@
-export const Task = () => {
+export const Task = ({ titulo, fecha, descrip }) => {
     return (
         <div className="bg-white shadow-md px-5 py-10 rounded-lg mt-5">
             <p className="font-bold mb-3 text-gray-700 uppercase">
-                Titulo:  <span className="font-normal normal-case"> Crear API</span>
+                Titulo:  <span className="font-normal normal-case"> {titulo}</span>
             </p>
 
             <p className="font-bold mb-3 text-gray-700 uppercase">
-                Fecha:  <span className="font-normal normal-case">1994-01-28</span>
+                Fecha:  <span className="font-normal normal-case">{fecha}</span>
             </p>
 
             <p className="font-bold mb-3 text-gray-700 uppercase">
-                Descripción :  <span className="font-normal normal-case">una tarea</span>
+                Descripción :  <span className="font-normal normal-case">{descrip}</span>
             </p>
         </div>
     )
