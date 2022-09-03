@@ -2,12 +2,12 @@ import { useEffect } from "react"
 import { Task } from "./Task"
 
 
-export const List_task = ({ tareas, setTarea }) => {
+export const List_task = ({ tareas, setTarea, eliminarTarea }) => {
 
 
     useEffect(() => {
         if (tareas.length > 0) {
-            
+
         }
     }, [tareas]);
 
@@ -27,6 +27,7 @@ export const List_task = ({ tareas, setTarea }) => {
                             key={tarea.id}
                             tarea={tarea}
                             setTarea={setTarea}
+                            eliminarTarea={eliminarTarea}
                         />)
                     })}
                 </>) : (<h2 className="font-black text-3xl text-center mb-10">

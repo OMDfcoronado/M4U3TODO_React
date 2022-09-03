@@ -7,6 +7,10 @@ function App() {
 
   const [tareas, setTareas] = useState([]);
   const [tarea, setTarea] = useState({});
+  const eliminarTarea = (id) => {
+    const tareasFiltradas = tareas.filter(tarea => console.log(tarea.id !== id))
+    setTareas(tareasFiltradas)
+  }
 
   return (
     <div className="container mx-auto mt-20">
@@ -21,6 +25,7 @@ function App() {
         <List_task
           tareas={tareas}
           setTarea={setTarea}
+          eliminarTarea={eliminarTarea}
         />
       </div>
     </div>
